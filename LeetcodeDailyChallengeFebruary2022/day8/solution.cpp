@@ -1,17 +1,17 @@
 class Solution {
 public:
-    int addDigits(int num) {
-        int temp=0;
-        while(num>0){
-            temp+=num%10;
-            num=num/10;
-            if ((num==0) and temp>9){
-                num=temp;
-                temp=0;
-                    
-            }
+    int addDigits(int num) { 
+        // if num is zero then return 0
+        if (num==0)
+            return 0;
+        // if sum  of the digits divislbe by 9 number is divisible by 9  then return 9
+        else if (num%9==0){
+            return 9;
         }
-        return temp;
+        // if num is not divisible by 9 then return remainder obtained.
+        else{
+            return num%9;
+        }
         
     }
 };
