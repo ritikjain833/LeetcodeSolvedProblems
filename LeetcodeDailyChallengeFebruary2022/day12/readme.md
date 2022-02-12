@@ -1,3 +1,3 @@
 Problem link-https://leetcode.com/problems/word-ladder/ </br>
-Time Complexity:O(Mexpression * expressionMexpression * expressionNexpression * expression26) </br>
-Space Complexity: O(Mexpression * expressionN)
+Time Complexity:O(M * M * M * 26) </br>
+Space Complexity: O(M * N)
