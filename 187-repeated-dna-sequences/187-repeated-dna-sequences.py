@@ -5,13 +5,15 @@ class Solution:
             return []
         ans=set()
         seen=set()
+        l=0
         
-        for i in range(n-9):
-            aux=s[i:i+10]
+        for r in range(9,n):
+            aux=s[l:r+1]
             if aux in seen:
                 ans.add(aux)
             else:
                 seen.add(aux)
+            l+=1    
         return list(ans)        
             
         
