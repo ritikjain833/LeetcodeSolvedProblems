@@ -7,6 +7,7 @@ class Solution:
             #print(low,high,mid)
             if nums[mid]==target:
                 return True
+            # for cases like 1 0 1 1 1 here nums[mid]==nums[low] so our increasing order is not maintained but nums[right] will also be equal to nums[mid]
             if nums[low]==nums[mid] and nums[mid]==nums[high]:
                 low+=1
                 high-=1
