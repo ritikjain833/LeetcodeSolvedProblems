@@ -9,7 +9,7 @@ class Solution:
             first_split_sum=prefix[i+1]-prefix[curr_index]
             largest_split_sum=max(first_split_sum,self.getminimum(prefix,dp,i+1,sc-1,n))
             minimum_largest_sum=min(minimum_largest_sum,largest_split_sum)
-            if first_split_sum>=minimum_largest_sum:
+            if first_split_sum>=largest_split_sum:
                 break
         dp[curr_index][sc]=minimum_largest_sum
         return dp[curr_index][sc]
