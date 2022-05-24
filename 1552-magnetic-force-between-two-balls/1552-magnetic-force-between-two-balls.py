@@ -11,14 +11,14 @@ class Solution:
         position.sort()
         n=len(position)
         l=0
-        r=position[-1]-position[0]+1
+        r=position[-1]-position[0]
         while l<r:
-            mid=(l+r)//2
+            mid=r-(r-l)//2
             if self.check(position,mid)>=m:
-                l=mid+1
+                l=mid
             else:
-                r=mid
+                r=mid-1
             #print(l,r)    
-        return l-1
+        return l
                 
         
