@@ -4,15 +4,18 @@ class Solution:
     
     #Function to find length of longest increasing subsequence.
     def longestSubsequence(self,arr,n):
-        maxi=float("-inf")
-        lis=[1]*(n)
-        for i in range(n):
-            for j in range(0,i):
-                if arr[j]<arr[i]:
-                    lis[i]=max(lis[i],lis[j]+1)
-            maxi=max(maxi,lis[i])
-        return  maxi          
-                    
+        arr2=sorted(list(set(arr)))
+        m=len(arr2)
+        dp=[[0]*(m+1) for _ in range(n+1)]
+        for i in range(n+1):
+            for j in range(m+1):
+                if i>0 and j>0:
+                    if arr[i-1]==arr2[j-1]:
+                        dp[i][j]=1+dp[i-1][j-1]
+                    else:
+                        dp[i][j]=max(dp[i-1][j],dp[i][j-1])
+        return dp[-1][-1]            
+                
         # code here
        
 
