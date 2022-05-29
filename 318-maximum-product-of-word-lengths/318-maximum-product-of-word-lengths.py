@@ -1,7 +1,7 @@
 class Solution:
     def getstate(self,word):
         mask=0
-        word=list(set(word))
+        #word=list(set(word))
         for i in range(len(word)):
             mask|=(1<<(ord(word[i])-ord("a")))
         return mask    
