@@ -3,24 +3,25 @@ class Solution:
         m=len(mat)
         n=len(mat[0])     
         if m==0:
-            return 0
-        dp=[[10**5]*(n) for i in range(m)]
+            return mat
+        dp=[[10**5]*(n) for _ in range(m)]
+        queue=deque()
         for i in range(m):
             for j in range(n):
                 if mat[i][j]==0:
                     dp[i][j]=0
-                else:
-                    if i>0:
-                        dp[i][j]=min(dp[i][j],dp[i-1][j]+1)
-                    if j>0:
-                        dp[i][j]=min(dp[i][j],dp[i][j-1]+1)
-        for i in range(m-1,-1,-1):
-            for j in range(n-1,-1,-1):
-                if i<m-1:
-                    dp[i][j]=min(dp[i][j],dp[i+1][j]+1)
-                if j<n-1:
-                    dp[i][j]=min(dp[i][j],dp[i][j+1]+1)
-        return dp            
-                        
+                    queue.append([i,j])
+        directions=[[-1,0],[1,0],[0,-1],[0,1]]
+        while queue:
+            r,c=queue.popleft()
+            for dr,dc in directions:
+                nr=r+dr
+                nc=c+dc
+                if nr>=0 and nr<m and nc>=0 and nc<n:
+                    if dp[nr][nc]>1+dp[r][c]:
+                        dp[nr][nc]=1+dp[r][c]
+                        queue.append([nr,nc])
+        return dp                
+                
                     
         
