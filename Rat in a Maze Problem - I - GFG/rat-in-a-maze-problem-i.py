@@ -13,11 +13,11 @@ class Solution:
         for dr,dc,di in directions:
             r=i+dr
             c=j+dc
-            if self.valid(r,c,m,n):
+            if r>=0 and r<n and c>=0 and c<n and m[r][c]==1:
                 m[r][c]=2
                 self.backtrack(m,n,directions,r,c,aux+di,ans)
                 m[r][c]=1
-            #return False    
+            
                 
             
         
