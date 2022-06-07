@@ -12,7 +12,8 @@ class DSU:
         parent_a=self.find(a)
         parent_b=self.find(b)
         if parent_a==parent_b:
-            return
+            self.rank[parent_b]=parent_a
+            self.parent[parent_a]+=1
         if self.rank[parent_a]>self.rank[parent_b]:
             self.parent[parent_b]=parent_a
             self.rank[parent_a]+=1
