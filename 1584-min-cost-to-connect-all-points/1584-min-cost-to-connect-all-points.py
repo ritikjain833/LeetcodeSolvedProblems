@@ -32,10 +32,14 @@ class Solution:
         edges.sort()
         res=0
         ds=DSU(n)
+        count=0
         for cost,i,j in edges:
             if ds.find(i)!=ds.find(j):
                 res+=cost
+                count+=1
                 ds.union(i,j)
+                if count==n-1:
+                    break
         return res        
                 
         
