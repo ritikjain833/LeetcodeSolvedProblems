@@ -1,13 +1,24 @@
 class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        i=0
-        j=len(numbers)-1
-        while i<j:
-            if numbers[i]+numbers[j]>target:
-                j-=1
-            elif numbers[i]+numbers[j]<target:
-                i+=1
+    def binary_search(self,target,arr,start,end):
+        while start<=end:
+            mid=(start+end)//2
+            #print(arr[mid],target)
+            if arr[mid]==target:
+                return mid,True
+            elif arr[mid]>target:
+                end=mid-1
             else:
-                return [i+1,j+1]
+                start=mid+1
+        return -1,False        
+        
+        
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        end=len(nums)-1
+        for i in range(len(nums)):
+            new_target=target-nums[i]
+            index,flag=self.binary_search(new_target,nums,i+1,end)
+            if flag==True:
+                return [i+1,index+1]
+    
                 
         
