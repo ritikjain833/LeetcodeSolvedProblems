@@ -26,6 +26,7 @@ class Solution:
         #print(res)
         return res
 """  
+""" O(n^2) and O(n^2)
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         n=len(s)
@@ -42,8 +43,35 @@ class Solution:
                 if dp[i][j] and j-i+1>max1:
                     max1=j-i+1
                     ans=s[i:j+1]
-        return ans            
+        return ans  
+        
+"""   
+class Solution:
+    def expand(self,s,start,end):
+        while start>=0 and end<len(s) and s[start]==s[end]:
+            start-=1
+            end+=1
+        return start,end
+            
+        
+    def longestPalindrome(self, s: str) -> str:
+        n=len(s)
+        ans=0
+        res=""
+        for i in range(n):
+            l1,r1=self.expand(s,i,i)  
+            if r1-l1-1>ans:
+                ans=r1-l1-1
+                res=s[l1+1:r1]
+            l2,r2=self.expand(s,i,i+1)
+            if r2-l2-1>ans:
+                ans=r2-l2-1
+                res=s[l2+1:r2]
                 
+    
+        return res        
+                
+            
     
         
                 
