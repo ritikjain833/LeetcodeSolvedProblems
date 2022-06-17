@@ -5,7 +5,20 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-    bool bipartite(int src,vector<int> adj[],vector<int> &color){
+    bool dfs(int src,vector<int> adj[],vector<int> &color){
+        vector<int> neighbours=adj[src];
+        for(int neighbor:neighbours){
+            if (color[neighbor]==color[src]){
+                return false;
+            }
+            else if (color[neighbor]==-1){
+                color[neighbor]=1-color[src];
+                if (dfs(neighbor,adj,color)==false)return false;
+            }
+        }
+        return true;
+    }
+    bool bfs(int src,vector<int> adj[],vector<int> &color){
         queue<int> q;
         q.push(src);
         color[src]=1;
@@ -34,12 +47,14 @@ public:
 	    vector<int> color(V,-1);
 	    for(int i=0;i<V;i++){
 	        if (color[i]==-1){
-	        bool ans=bipartite(i,adj,color);
-	        if (ans==false)return false;}
+	        //bool ans=bfs(i,adj,color);
+	        //if (ans==false)return false;}
+	        color[i]=1;
+	        if (dfs(i,adj,color)==false)return false;
 	    }
-	    return true;
 	    
-	}
+	    
+	}return true;}
 
 };
 
