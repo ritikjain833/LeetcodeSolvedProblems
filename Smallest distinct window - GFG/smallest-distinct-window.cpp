@@ -25,9 +25,7 @@ class Solution{
             if(mp.find(str[end])!=mp.end()){
                 new_map[str[end]]++;
             }
-            else{
-                new_map.insert({str[end],1});
-            }
+            
             while (new_map.find(str[start])!=mp.end() and new_map[str[start]]>1){
                 new_map[str[start]]--;
                 start++;
