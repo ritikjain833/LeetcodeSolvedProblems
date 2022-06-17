@@ -9,6 +9,7 @@ class Solution{
     int findSubString(string str)
     {
         // Your code goes here   
+        // find the unor
         unordered_map<char,int> mp;
         for(int i=0;i<str.size();i++){
             if (mp.find(str[i])==mp.end()){
@@ -22,8 +23,11 @@ class Solution{
         int start=0;
         int ans=INT_MAX;
         while (end<str.size()){
-            if(mp.find(str[end])!=mp.end()){
+            if(new_map.find(str[end])!=new_map.end()){
                 new_map[str[end]]++;
+            }
+            else{
+                new_map.insert({str[end],1});
             }
             
             while (new_map[str[start]]>1){
