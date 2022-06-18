@@ -7,16 +7,16 @@ class Solution:
         len_h=len(horizontalCuts)
         len_w=len(verticalCuts)
         mod=10**9+7
-        if len_w==1 and len_h==1:
-            ans1=(h-horizontalCuts[0])*(w-verticalCuts[0])
-            ans2=(horizontalCuts[0])*(verticalCuts[0])
-            ans3=(h-horizontalCuts[0])*verticalCuts[0]
-            ans4=horizontalCuts[0]*(w-verticalCuts[0])
-            return max(ans1,max(ans2,max(ans3,ans4)))%mod
-        if len_h==1:
-            diff1=max(h-horizontalCuts[0],horizontalCuts[0])
-        if len_w==1:
-            diff2=max(w-verticalCuts[0],verticalCuts[0])
+        # if len_w==1 and len_h==1:
+        #     ans1=(h-horizontalCuts[0])*(w-verticalCuts[0])
+        #     ans2=(horizontalCuts[0])*(verticalCuts[0])
+        #     ans3=(h-horizontalCuts[0])*verticalCuts[0]
+        #     ans4=horizontalCuts[0]*(w-verticalCuts[0])
+        #     return max(ans1,max(ans2,max(ans3,ans4)))%mod
+        # if len_h==1:
+        #     diff1=max(h-horizontalCuts[0],horizontalCuts[0])
+        # if len_w==1:
+        #     diff2=max(w-verticalCuts[0],verticalCuts[0])
             
 
         for i in range(1,len_h):
