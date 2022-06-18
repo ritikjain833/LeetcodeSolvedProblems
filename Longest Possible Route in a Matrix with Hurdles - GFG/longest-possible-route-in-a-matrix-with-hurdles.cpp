@@ -24,13 +24,13 @@ class Solution {
             ans=max(ans,current_ans);
             return;
         }
-        int temp=mat[i][j];
+        //int temp=mat[i][j];
         mat[i][j]=0;
         solve(mat,i+1,j,xd,yd,current_ans+1);
         solve(mat,i,j+1,xd,yd,current_ans+1);
         solve(mat,i-1,j,xd,yd,current_ans+1);
         solve(mat,i,j-1,xd,yd,current_ans+1);
-        mat[i][j]=temp;
+        mat[i][j]=1;
     }
 };
 
