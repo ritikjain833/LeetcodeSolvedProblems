@@ -9,28 +9,40 @@ using namespace std;
 //User function Template for C++
 
 class Solution {
- int ans=INT_MIN;
- public:
-    int longestPath(vector<vector<int>>&matrix, int xs, int ys, int xd, int yd)
-    
-    {
-        if(!matrix[xd][yd])return -1;
-        solve(matrix,xs,ys,xd,yd,0);
-        return ans==INT_MIN?-1:ans;
-    }
-    void solve(vector<vector<int>>&mat,int i,int j,int xd,int yd,int current_ans){
-        if(i<0 || i>=mat.size() || j<0 || j>=mat[0].size() || !mat[i][j])return;
-        if(i==xd && j==yd){
-            ans=max(ans,current_ans);
+    int ans=INT_MIN;
+public:
+    void backtrack(vector<vector<int>> &matrix,int m,int n,int xs,int ys,int xd,int yd,int current_ans){
+        
+        if(xs==xd && ys==yd){
+                ans=max(ans,current_ans);
+                //cout<<ans<<endl;
+                return;
+        }
+        if(xs<0 || xs>=m || ys<0 || ys>=n ||matrix[xs][ys]==0){
             return;
         }
-        //int temp=mat[i][j];
-        mat[i][j]=0;
-        solve(mat,i+1,j,xd,yd,current_ans+1);
-        solve(mat,i,j+1,xd,yd,current_ans+1);
-        solve(mat,i-1,j,xd,yd,current_ans+1);
-        solve(mat,i,j-1,xd,yd,current_ans+1);
-        mat[i][j]=1;
+        int temp=matrix[xs][ys];
+        matrix[xs][ys]=0;
+        backtrack(matrix,m,n,xs+1,ys,xd,yd,current_ans+1);
+        backtrack(matrix,m,n,xs-1,ys,xd,yd,current_ans+1);
+        backtrack(matrix,m,n,xs,ys+1,xd,yd,current_ans+1);
+        backtrack(matrix,m,n,xs,ys-1,xd,yd,current_ans+1);
+        matrix[xs][ys]=temp;
+        return;
+        
+    }
+    int longestPath(vector<vector<int>> matrix, int xs, int ys, int xd, int yd)
+    {
+        int m=matrix.size();
+        int n=matrix[0].size();
+        //vector< vector< bool > > visited( m, vector<bool>( n, false ) );
+        if (matrix[xd][yd]==0){
+            return -1;
+        }
+        backtrack(matrix,m,n,xs,ys,xd,yd,0);
+        //cout<<ans;
+        return ans==INT_MIN?-1:ans;
+        // code here
     }
 };
 
