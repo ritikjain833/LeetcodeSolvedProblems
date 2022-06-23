@@ -17,12 +17,18 @@ class Solution:
         
                 
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        """ Check for each edges considering u as src and v as target and then applying dfs to for cycle check
+        Time complexity will be O(n*n) because for each edge we have consider the dfs so n*n n^2.        
+        
+        """
         m=len(edges)
         adj=defaultdict(set)
         
         for i,j in edges:
+            # we have to create boolean visited array for each dfs iteration
             visited=[False]*(m+1)
-            if i in adj and j in adj and self.dfs(adj,i,j,visited):
+            
+            if self.dfs(adj,i,j,visited):
                 return i,j
                 
                 
