@@ -34,7 +34,7 @@ class Solution:
             adj[j].append(i)
         """DFS approach"""
         #C=[0]+Cap
-        low=sum(Cap)
+        low=1
         high=10**18+1
         while low<high:
             mid=low+(high-low)//2
