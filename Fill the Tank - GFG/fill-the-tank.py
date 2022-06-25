@@ -69,7 +69,7 @@ class Solution:
         high=10**18+1
         while low<high:
             mid=low+(high-low)//2
-            ans=self.dfs(S,adj,Cap,mid)
+            ans=self.bfs(S,adj,Cap,mid)
             #print(mid,ans)
             # if ans is possible atcan be upto this so use high=mid
             if ans:
