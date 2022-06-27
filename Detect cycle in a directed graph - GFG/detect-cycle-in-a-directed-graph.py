@@ -1,6 +1,6 @@
 #User function Template for python3
-
-
+from collections import deque
+"""DFS Approach for cycle detection using the recursive_Stack if node is alreday present in the stack then that means cycle is detected"""
 class Solution:
     def dfs(self,i,visited,rec_stack,adj):
         visited[i]=True
@@ -18,14 +18,43 @@ class Solution:
     
     #Function to detect cycle in a directed graph.
     def isCyclic(self, V, adj):
+        
         # code here
-        visited=[False]*(V)
-        rec_stack=[False]*(V)
+        # visited=[False]*(V)
+        # rec_stack=[False]*(V)
+        # for i in range(V):
+        #     if visited[i]==False:
+        #         if self.dfs(i,visited,rec_stack,adj):
+        #             return True
+        # return False 
+        """Kahn's algorithm to find topological sort"""
+         
+        degree=[0]*(V)
+        
         for i in range(V):
-            if visited[i]==False:
-                if self.dfs(i,visited,rec_stack,adj):
-                    return True
-        return False            
+            for j in adj[i]:
+                degree[j]+=1
+        queue=deque()
+        ans=[]
+        visited=[False]*(V)
+        for i in range(V):
+            if degree[i]==0:
+                queue.append(i)
+                ans.append(i)
+                visited[i]=True
+                
+        while queue:
+            aux=queue.popleft()
+            for out in adj[aux]:
+                if visited[out]==False:
+                    degree[out]-=1
+                    if degree[out]==0:
+                        queue.append(out)
+                        ans.append(out)
+        if len(ans)==V:
+            return False
+        else:
+            return True
 
 #{ 
 #  Driver Code Starts
