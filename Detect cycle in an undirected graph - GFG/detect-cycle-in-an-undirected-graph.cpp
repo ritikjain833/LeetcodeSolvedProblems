@@ -14,11 +14,14 @@ class Solution {
             int parent=q.front().second;
             q.pop();
             for(auto out:adj[node]){
+                if (parent==out){
+                    continue;
+                }
                 if (visited[out]==false){
                     visited[out]=true;
                     q.push({out,node});
                 }
-                else if(visited[out]==true and parent!=out){
+                else if(visited[out]==true){
                     return true;
                 }
             }
