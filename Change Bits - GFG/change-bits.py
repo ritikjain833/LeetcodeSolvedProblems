@@ -5,18 +5,12 @@ class Solution:
         # code here 
         bits=0
         aux=N
+        res=0
         while aux:
             aux=aux//2
+            res=res|(1<<bits)
             bits+=1
-        count=bits
-        res=0
-        i=0
-        while i<count:
-            res=res|(1<<i)
-            i+=1
-        
-            
-        
+
         return [res-N,res]
             
 
