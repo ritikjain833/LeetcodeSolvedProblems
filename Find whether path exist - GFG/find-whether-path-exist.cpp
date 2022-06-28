@@ -34,20 +34,22 @@ class Solution
             q.pop();
             int x=aux.first;
             int y=aux.second;
+            
             for(int i=0;i<4;i++){
                 int nr=dr[i]+x;
                 int nc=dc[i]+y;
+                
                 if(nr>=0 and nr<n and nc>=0 and nc<n and grid[nr][nc]!=0){
                     q.push({nr,nc});
                     grid[nr][nc]=0;
+                    if (nr==dest.first and nc==dest.second){
+                        return 1;
+                    }
        
                 }
             }
         }
-         if(grid[dest.first][dest.second]==0){
-            return 1;
             
-        }    
         return 0;
         
     }
