@@ -11,34 +11,18 @@
  */
 class Solution {
 public:
-    TreeNode* prev=NULL;
-    // vector<int> ans;
-    // void inorder(TreeNode* root){
-    //     if(root!=NULL){
-    //         inorder(root->left);
-    //         ans.push_back(root->val);
-    //         inorder(root->right);
-    //     }
-    // }
-    bool validate(TreeNode* root){
+    bool validate(TreeNode* root,long mi,long mx){
         if(root==NULL){
 return true;}
-        if (!validate(root->left)){
+        if(root->val>=mx || root->val<=mi){
             return false;
         }
-        if (prev!=NULL and prev->val>=root->val){
-            return false;
-        }
-        prev=root;
-        return validate(root->right);
+        return validate(root->left,mi,root->val) and validate(root->right,root->val,mx);
+        
     }
+    
     bool isValidBST(TreeNode* root) {
-//         inorder(root);
-//         sort(ans.begin(),ans.end());
-        
-//         return true;
-        return validate(root);
-        
+        return validate(root,LONG_MIN,LONG_MAX);
         
     }
 };
