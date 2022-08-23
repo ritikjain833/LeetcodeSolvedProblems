@@ -10,22 +10,39 @@
  */
 class Solution {
 public:
-    bool isPalindrome(ListNode* head) {
-        vector<int> temp;
+    ListNode* reverse(ListNode* head){
+        ListNode* prev=NULL;
         while(head!=NULL){
-            temp.push_back(head->val);
-            head=head->next;
+            ListNode* next=head->next;
+            head->next=prev;
+            prev=head;
+            head=next;
         }
-       int i=0;
-        int j=temp.size()-1;
-        while(i<j){
-            if (temp[i]!=temp[j]){
+        return prev;
+    }
+    bool isPalindrome(ListNode* head) {
+        //use two pointer approach to find the middle node and reverse the second half of the linked list and then compare the values
+       ListNode* slow=head;
+       ListNode* fast=head;
+        while(fast!=NULL and fast->next!=NULL){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        // if the length is odd numbered then move the slow pointer
+        if(fast!=NULL){
+            slow=slow->next;
+        }
+        // reverse part of the second.
+        slow=reverse(slow);
+        fast=head;
+        //comparing the values
+        while(slow!=NULL){
+            if(slow->val!=fast->val){
                 return false;
             }
-            i++;
-            j--;
+            slow=slow->next;
+            fast=fast->next;
         }
-        
         return true;
     }
 };
