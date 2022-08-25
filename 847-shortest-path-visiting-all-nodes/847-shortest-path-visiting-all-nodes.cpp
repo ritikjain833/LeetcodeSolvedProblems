@@ -24,12 +24,13 @@ public:
                 q.pop();
                 int state=p.second;
                 int node=p.first;
+                if (visited[node][state]) continue;
                 //stops when conditions is satisfied
                 if(state==visited_all){
                     return steps;
                 }
                 //if already visited.
-                if (visited[node][state]) continue;
+                
                 //mark visited
                 visited[node][state]=1;
                 //push the adjacent node with seting its bit.
