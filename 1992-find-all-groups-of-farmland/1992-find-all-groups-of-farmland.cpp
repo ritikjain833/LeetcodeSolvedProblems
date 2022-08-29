@@ -1,7 +1,6 @@
 class Solution {
 public:
-    int dx[4]={-1,0,1,0};
-    int dy[4]={0,1,0,-1};
+    int dx[5]={-1,0,1,0,-1};
     int m;
     int n;
     vector<vector<int>> ans;
@@ -18,7 +17,7 @@ public:
             dc=t.second;
             for(int i=0;i<4;i++){
                 int nr=dr+dx[i];
-                int nc=dc+dy[i];
+                int nc=dc+dx[i+1];
                 if(nr>=0 and nr<m and nc>=0 and nc<n and land[nr][nc]==1){
                     land[nr][nc]=0;
                     q.push({nr,nc});
