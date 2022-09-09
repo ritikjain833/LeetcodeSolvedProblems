@@ -6,6 +6,7 @@ class Solution:
         weak=0
         #max_defense=0 
         max_defense=0
+        
         for x,defense in properties:
             if defense<max_defense:
                 weak+=1
