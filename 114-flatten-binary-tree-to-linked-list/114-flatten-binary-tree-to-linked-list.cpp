@@ -11,16 +11,22 @@
  */
 class Solution {
 public:
+    // use a previous pointer to maintain the prev node
     TreeNode* prev=NULL;
     void flatten(TreeNode* root) {
-        if(root==NULL){
-            return ;
+        if(root!=NULL){
+            // first visit the right child
+            //then visit the left child
+            flatten(root->right);
+            flatten(root->left);
+            //make left point to NULL
+            
+            root->left=NULL;
+            //right to prev
+            root->right=prev;
+            //change prev to root
+            prev=root;
         }
-        flatten(root->right);
-        flatten(root->left);
-        root->right=prev;
-        root->left=NULL;
-        prev=root;
         
     }
 };
