@@ -3,9 +3,13 @@ public:
     int dp[32][1005];
     int mod=1e9+7;
     int solve(int n,int k,int target){
-        if(n==0 or target<=0){
-            return n==target;
+        if(n==target and n==0){
+            return true;
         }
+        else if(target<0 or n<0){
+            return false;
+        }
+      
         if(dp[n][target]!=-1){
             return dp[n][target];
         }
