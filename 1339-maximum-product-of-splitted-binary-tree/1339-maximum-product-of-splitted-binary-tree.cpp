@@ -11,26 +11,23 @@
  */
 class Solution {
 public:
-    vector<int> temp;
     int mod=1e9+7;
-    int subtree_sum(TreeNode* root){
+    long long subtree_sum;
+    long long total_sum=0;
+    long long result=0;
+    int tree_sum(TreeNode* root){
         if(root==NULL){
             return 0;
         }
-        int ans=root->val+subtree_sum(root->left)+subtree_sum(root->right);
-        temp.push_back(ans);
-        return ans;
+        subtree_sum=root->val+tree_sum(root->left)+tree_sum(root->right);
+        result=max(result,subtree_sum*(total_sum-subtree_sum));
+        return subtree_sum;
+        
     }
     int maxProduct(TreeNode* root) {
-        long long  total=subtree_sum(root);
-        //cout<<total<<endl;
-        long long res=LONG_MIN;
-        for(auto x:temp)
-        {
-            long long aux=(x*(total-x));
-            res=max(res,aux);
-        }
-        return res%mod;
+        total_sum=tree_sum(root);
+        tree_sum(root);
+        return result%mod;
         
     }
 };
