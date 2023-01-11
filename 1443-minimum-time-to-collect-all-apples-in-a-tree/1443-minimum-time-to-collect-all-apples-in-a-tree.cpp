@@ -1,47 +1,22 @@
 class Solution {
 public:
+    int dfs(int src,int parent,vector<int> adj[],vector<bool> &hasApple ){
+        int total_time=0;
+        int child_time=0;
+        for(auto child: adj[src]){
+            if(child==parent) continue;
+            child_time=dfs(child,src,adj,hasApple);
+            if(child_time || hasApple[child]) total_time+=(child_time+2);
+        }
+        return total_time;
+    }
     int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
-        /* start from the leaves and remove those edges which doesn't contribute in the answer*/
-        // use concept of kahn's algorithm
-        hasApple[0]=1;
-        queue<int>q;
-        vector<int> graph[n];
-        vector<int> degree(n,0);
-        for(auto x:edges){
-            graph[x[0]].push_back(x[1]);
-            graph[x[1]].push_back(x[0]);
-            degree[x[0]]++;
-            degree[x[1]]++;
-            
+        vector<int> adj[n];
+        for(auto &edge: edges){
+            adj[edge[0]].push_back(edge[1]);
+            adj[edge[1]].push_back(edge[0]);
         }
-        for(int i=0;i<n;i++){
-            if(degree[i]==1){
-                q.push(i);
-            }
-        }
-        while(!q.empty()){
-            int aux=q.front();
-            q.pop();
-            if(hasApple[aux]){
-                continue;
-            }
-            for(auto out:graph[aux]){
-               
-                if(degree[out]>0){
-                     degree[out]--;
-                degree[aux]--;
-                if(degree[out]==1){
-                    q.push(out);
-                }
-                }
-            }
-        }
-        int sum=0;
-        for(int i=0;i<n;i++){
-            sum+=degree[i];
-        }
-        return sum;
-        
+        return dfs(0,-1,adj,hasApple);
         
     }
 };
